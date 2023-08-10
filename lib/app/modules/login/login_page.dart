@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:job_timer/app/modules/login/controller/login_controller.dart';
 
 class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+  final LoginController controller;
+
+  const LoginPage({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -29,12 +33,31 @@ class LoginPage extends StatelessWidget {
                 width: screenSize.width * .8,
                 height: 49,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    controller.singIn();
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.grey[200],
                   ),
                   child: Image.asset('assets/images/google.png'),
                 ),
+              ),
+              BlocSelector<LoginController, LoginState, bool>(
+                bloc: controller,
+                selector: (state) => state.status == LoginStatus.loading,
+                builder: (context, show) {
+                  return Visibility(
+                    visible: show,
+                    child: const Padding(
+                      padding: EdgeInsets.only(top: 20.0),
+                      child: Center(
+                        child: CircularProgressIndicator.adaptive(
+                          backgroundColor: Colors.white,
+                        ),
+                      ),
+                    ),
+                  );
+                },
               ),
             ],
           ),
