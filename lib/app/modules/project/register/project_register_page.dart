@@ -64,9 +64,9 @@ class _ProjectRegisterPageState extends State<ProjectRegisterPage> {
                 keyboardType: TextInputType.number,
                 inputFormatters: <TextInputFormatter>[
                   FilteringTextInputFormatter.allow(
-                    RegExp(r'[0-9]+[,.]{0,1}[0-9]*'),
+                    //RegExp(r'[0-9]+[,.]{0,1}[0-9]*'),
                     // Ou essa experessão caso não queira usar
-                    //RegExp(r'[0-9]'),
+                    RegExp(r'[0-9]'),
                   ),
                   TextInputFormatter.withFunction(
                     (oldValue, newValue) => newValue.copyWith(
