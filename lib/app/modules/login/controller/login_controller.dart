@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:job_timer/app/modules/services/auth/auth_service.dart';
+import 'package:job_timer/app/services/auth/auth_service.dart';
 
 part 'login_state.dart';
 
