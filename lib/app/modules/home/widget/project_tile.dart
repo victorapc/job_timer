@@ -10,23 +10,28 @@ class ProjectTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      constraints: const BoxConstraints(maxHeight: 90),
-      margin: const EdgeInsets.all(10),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-        border: Border.all(
-          color: Colors.grey[300]!,
-          width: 4,
-        ),
-      ),
-      child: Column(
-        children: [
-          ProjectName(projectModel: projectModel),
-          Expanded(
-            child: ProjectProgress(projectModel: projectModel),
+    return InkWell(
+      onTap: () {
+        Modular.to.pushNamed('/project/detail', arguments: projectModel);
+      },
+      child: Container(
+        constraints: const BoxConstraints(maxHeight: 90),
+        margin: const EdgeInsets.all(10),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          border: Border.all(
+            color: Colors.grey[300]!,
+            width: 4,
           ),
-        ],
+        ),
+        child: Column(
+          children: [
+            ProjectName(projectModel: projectModel),
+            Expanded(
+              child: ProjectProgress(projectModel: projectModel),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -39,26 +44,21 @@ class ProjectName extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {
-        Modular.to.pushNamed('/project/detail', arguments: projectModel);
-      },
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              projectModel.name,
-              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-            ),
-            Icon(
-              JobTimerIcons.angle_double_right,
-              color: Theme.of(context).primaryColor,
-              size: 20,
-            ),
-          ],
-        ),
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            projectModel.name,
+            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+          ),
+          Icon(
+            JobTimerIcons.angle_double_right,
+            color: Theme.of(context).primaryColor,
+            size: 20,
+          ),
+        ],
       ),
     );
   }
